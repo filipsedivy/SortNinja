@@ -12,13 +12,16 @@ public class ConsoleService implements ConsoleInterface {
 
   @Inject
   public ConsoleService(ConsoleValidator consoleValidator) {
-      this.consoleValidator = consoleValidator;
+    this.consoleValidator = consoleValidator;
   }
 
   @Override
   public void run(String[] args) {
     Arguments arguments = this.parseArguments(args);
-    this.consoleValidator.validate(arguments);
+
+    if (!this.consoleValidator.validate(arguments)) {
+      System.exit(1);
+    }
   }
 
   private Arguments parseArguments(String[] args) {
