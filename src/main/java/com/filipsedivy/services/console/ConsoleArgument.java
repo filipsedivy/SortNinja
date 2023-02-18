@@ -1,22 +1,32 @@
 package com.filipsedivy.services.console;
 
-import net.sourceforge.argparse4j.ArgumentParsers;
-import net.sourceforge.argparse4j.inf.ArgumentParser;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
 
 public class ConsoleArgument {
-  public static ArgumentParser create() {
-    ArgumentParser parser = ArgumentParsers.newFor("Process").build()
-        .defaultHelp(true)
-        .description("Set input path");
 
-    parser.addArgument("-i", "--input")
-        .nargs("*")
-        .help("Set input path");
+  public static Options getOptions() {
+    Options options = new Options();
 
-    parser.addArgument("-o", "--output")
-        .nargs("*")
-        .help("Set output path");
+    Option input = new Option("i", "input", true, "Input file");
+    input.setRequired(true);
+    options.addOption(input);
 
-    return parser;
+    Option output = new Option("o", "output", true, "Output directory");
+    output.setRequired(true);
+    options.addOption(output);
+
+    return options;
+  }
+
+  public static CommandLineParser createParser() {
+    return new DefaultParser();
+  }
+
+  public static HelpFormatter createHelpFormatter() {
+    return new HelpFormatter();
   }
 }
