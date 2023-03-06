@@ -1,19 +1,21 @@
 package com.filipsedivy.services.application;
 
+import com.filipsedivy.services.console.IConsoleService;
+import com.filipsedivy.services.console.IConsoleServiceFactory;
 import com.google.inject.Inject;
-import com.filipsedivy.services.console.ConsoleService;
 
-public class ApplicationService implements ApplicationInterface {
+public class ApplicationService implements IApplicationService {
 
-  private final ConsoleService consoleService;
+  private final IConsoleServiceFactory consoleServiceFactory;
 
   @Inject
-  public ApplicationService(ConsoleService consoleService) {
-    this.consoleService = consoleService;
+  public ApplicationService(IConsoleServiceFactory consoleServiceFactory) {
+    this.consoleServiceFactory = consoleServiceFactory;
   }
 
   @Override
   public void run(String[] args) {
-    consoleService.run(args);
+    IConsoleService consoleService = this.consoleServiceFactory.create(args);
+    consoleService.run();
   }
 }

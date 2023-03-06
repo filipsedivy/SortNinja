@@ -6,6 +6,6 @@ public class ApplicationModule extends AbstractModule {
 
   @Override
   protected void configure() {
-    bind(ApplicationInterface.class).to(ApplicationService.class);
+    bind(IApplicationService.class).to(ApplicationService.class);
   }
 }

@@ -1,5 +1,5 @@
 package com.filipsedivy.services.application;
 
-public interface ApplicationInterface {
+public interface IApplicationService {
   void run(String[] args);
 }

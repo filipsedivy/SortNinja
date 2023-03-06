@@ -6,7 +6,7 @@ public class ConsoleModule extends AbstractModule {
 
   @Override
   protected void configure() {
-    bind(ConsoleInterface.class).to(ConsoleService.class);
-    bind(ConsoleValidatorInterface.class).to(ConsoleValidator.class);
+    bind(IConsoleValidatorService.class).to(ConsoleValidatorService.class);
+    bind(IConsoleArgumentsService.class).to(ConsoleArgumentsService.class);
   }
 }
